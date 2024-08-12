@@ -25,11 +25,6 @@ for ($i = 0; $i < $cases; $i++) {
         $boardState .= trim(fgets(STDIN));
     }
 
-    echo validGameState($boardState, $winningCombinations) . "\n";
-}
-
-function validGameState($boardState, $winningCombinations): string
-{
     $boardElements = str_split($boardState);
     $countX = substr_count($boardState, 'X');
     $countO = substr_count($boardState, 'O');
@@ -50,16 +45,14 @@ function validGameState($boardState, $winningCombinations): string
     }
 
     if ($xWins && $oWins) {
-        return 'no';
-    }
-
-    if ($xWins && $countX === $countO + 1) {
-        return 'yes';
+        echo 'no' . "\n";
+    } elseif ($xWins && $countX === $countO + 1) {
+        echo 'yes' . "\n";
     } elseif ($oWins && $countX === $countO) {
-        return 'yes';
+        echo 'yes' . "\n";
     } elseif (!$xWins && !$oWins && ($countX === $countO || $countX === $countO + 1)) {
-        return 'yes';
+        echo 'yes' . "\n";
     } else {
-        return 'no';
+        echo 'no' . "\n";
     }
 }
